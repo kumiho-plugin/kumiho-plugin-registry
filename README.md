@@ -4,7 +4,7 @@ Official plugin index for Kumiho.
 ## Format
 
 - `index.json`: installable plugin catalog
-- each entry uses `kumiho-plugin-sdk/manifest.Manifest` compatible fields
+- Each entry uses `kumiho-plugin-sdk/manifest.Manifest` compatible fields
 
 ## Current entries
 
