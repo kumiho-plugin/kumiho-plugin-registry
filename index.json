@@ -4,10 +4,10 @@
       "id": "kumiho-plugin-metadata-googlebooks",
       "name": "Google Books",
       "description": "Google Books metadata provider for Kumiho",
-      "version": "0.1.2",
+      "version": "0.1.3",
       "author": "Kumiho",
       "icons": {
-        "svg": "https://raw.githubusercontent.com/kumiho-plugin/kumiho-plugin-metadata-googlebooks/v0.1.2/assets/googlebooks.svg"
+        "svg": "https://raw.githubusercontent.com/kumiho-plugin/kumiho-plugin-metadata-googlebooks/v0.1.3/assets/googlebooks.svg"
       },
       "homepage": "https://books.google.com/",
       "repository": "https://github.com/kumiho-plugin/kumiho-plugin-metadata-googlebooks",
@@ -30,8 +30,8 @@
       "artifacts": [
         {
           "platform": "linux/docker",
-          "url": "https://github.com/kumiho-plugin/kumiho-plugin-metadata-googlebooks/releases/download/v0.1.2/kumiho-plugin-metadata-googlebooks_v0.1.2_linux_amd64",
-          "checksum": "sha256:6e7cd00032722833ce851fcc4a5c70665c26abb39b6d295c7624b4d9b8112545"
+          "url": "https://github.com/kumiho-plugin/kumiho-plugin-metadata-googlebooks/releases/download/v0.1.3/kumiho-plugin-metadata-googlebooks_v0.1.3_linux_amd64",
+          "checksum": "sha256:129de5fd907409633dd3fcd34290756bc984b96e9b870025fc20821db069a8a5"
         }
       ]
     }
