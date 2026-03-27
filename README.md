@@ -5,6 +5,7 @@ Official plugin index for Kumiho.
 
 - `index.json`: installable plugin catalog
 - Each entry uses `kumiho-plugin-sdk/manifest.Manifest` compatible fields
+- Optional visual metadata such as `icons.svg` / `icons.png` can be included for plugin card UIs
 
 ## Current entries
 
