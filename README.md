@@ -9,9 +9,9 @@ Official plugin index for Kumiho.
 
 ## Current entries
 
-- `kumiho-plugin-metadata-googlebooks`
+- `kumiho-plugin-metadata-kitsu`
 
 ## Notes
 
-- `kumiho-plugin-metadata-googlebooks` is currently registered as a `service` runtime plugin
+- `kumiho-plugin-metadata-kitsu` is currently registered as a `service` runtime plugin
 - Release artifact metadata should be filled after the container image or deployable artifact is published

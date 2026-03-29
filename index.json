@@ -1,16 +1,13 @@
 {
   "plugins": [
     {
-      "id": "kumiho-plugin-metadata-googlebooks",
-      "name": "Google Books",
-      "description": "Google Books metadata provider for Kumiho",
-      "version": "0.1.3",
+      "id": "kumiho-plugin-metadata-kitsu",
+      "name": "Kitsu Manga",
+      "description": "Kitsu manga metadata provider for Kumiho",
+      "version": "0.1.2",
       "author": "Kumiho",
-      "icons": {
-        "svg": "https://raw.githubusercontent.com/kumiho-plugin/kumiho-plugin-metadata-googlebooks/v0.1.3/assets/googlebooks.svg"
-      },
-      "homepage": "https://books.google.com/",
-      "repository": "https://github.com/kumiho-plugin/kumiho-plugin-metadata-googlebooks",
+      "homepage": "https://kitsu.app/",
+      "repository": "https://github.com/kumiho-plugin/kumiho-plugin-metadata-kitsu",
       "license": "Apache-2.0",
       "trust_level": "official",
       "runtime_type": "service",
@@ -27,11 +24,212 @@
       "min_core_version": "0.1.0",
       "sdk_version": "0.1.2",
       "config_schema_version": "1",
+      "config_schema": {
+        "version": "1",
+        "fields": [
+          {
+            "key": "access_token",
+            "type": "secret",
+            "label": "Access Token",
+            "label_i18n": {
+              "ko": "액세스 토큰",
+              "en": "Access Token",
+              "ja": "アクセストークン"
+            },
+            "description": "Optional Kitsu OAuth access token for user-scoped advanced search.",
+            "description_i18n": {
+              "ko": "사용자별 고급 검색에 사용하는 선택적 토큰입니다.",
+              "en": "Optional Kitsu OAuth access token for user-scoped advanced search.",
+              "ja": "ユーザー別の高度検索に使う任意トークンです。"
+            },
+            "env_key": "KITSU_ACCESS_TOKEN"
+          },
+          {
+            "key": "refresh_token",
+            "type": "secret",
+            "label": "Refresh Token",
+            "label_i18n": {
+              "ko": "리프레시 토큰",
+              "en": "Refresh Token",
+              "ja": "リフレッシュトークン"
+            },
+            "description": "Optional Kitsu OAuth refresh token used to renew the access token.",
+            "description_i18n": {
+              "ko": "액세스 토큰을 다시 발급받을 때 사용하는 선택적 토큰입니다.",
+              "en": "Optional Kitsu OAuth refresh token used to renew the access token.",
+              "ja": "アクセストークンを再発行する際に使う任意トークンです。"
+            },
+            "env_key": "KITSU_REFRESH_TOKEN"
+          }
+        ]
+      },
+      "auth": {
+        "actions": [
+          {
+            "id": "login",
+            "type": "password_grant",
+            "title": "Kitsu 로그인",
+            "title_i18n": {
+              "ko": "Kitsu 로그인",
+              "en": "Kitsu Login",
+              "ja": "Kitsu ログイン"
+            },
+            "description": "Kitsu 계정으로 로그인해 토큰을 발급받고 저장합니다. 비밀번호는 저장하지 않습니다.",
+            "description_i18n": {
+              "ko": "Kitsu 계정으로 로그인해 토큰을 발급받고 저장합니다. 비밀번호는 저장하지 않습니다.",
+              "en": "Log in with a Kitsu account to issue and store tokens. The password is not stored.",
+              "ja": "Kitsu アカウントでログインしてトークンを発行・保存します。パスワードは保存しません。"
+            },
+            "button_label": "Kitsu 로그인",
+            "button_label_i18n": {
+              "ko": "Kitsu 로그인",
+              "en": "Kitsu Login",
+              "ja": "Kitsu にログイン"
+            },
+            "repeat_label": "Kitsu 재로그인",
+            "repeat_label_i18n": {
+              "ko": "Kitsu 재로그인",
+              "en": "Re-login to Kitsu",
+              "ja": "Kitsu に再ログイン"
+            },
+            "delete_label": "토큰 삭제",
+            "delete_label_i18n": {
+              "ko": "토큰 삭제",
+              "en": "Remove Tokens",
+              "ja": "トークン削除"
+            },
+            "required_message": "Kitsu 이메일(또는 슬러그)과 비밀번호를 입력해 주세요.",
+            "required_message_i18n": {
+              "ko": "Kitsu 이메일(또는 슬러그)과 비밀번호를 입력해 주세요.",
+              "en": "Enter your Kitsu email (or slug) and password first.",
+              "ja": "先に Kitsu のメールアドレス（またはスラッグ）とパスワードを入力してください。"
+            },
+            "success_message": "Kitsu 토큰을 저장했습니다.",
+            "success_message_i18n": {
+              "ko": "Kitsu 토큰을 저장했습니다.",
+              "en": "Kitsu tokens saved.",
+              "ja": "Kitsu トークンを保存しました。"
+            },
+            "success_reactivate_message": "Kitsu 토큰을 저장했습니다. 플러그인을 다시 활성화하면 적용됩니다.",
+            "success_reactivate_message_i18n": {
+              "ko": "Kitsu 토큰을 저장했습니다. 플러그인을 다시 활성화하면 적용됩니다.",
+              "en": "Kitsu tokens saved. Activate the plugin again to apply them.",
+              "ja": "Kitsu トークンを保存しました。プラグインを再度有効化すると適用されます。"
+            },
+            "error_message": "Kitsu 로그인에 실패했습니다.",
+            "error_message_i18n": {
+              "ko": "Kitsu 로그인에 실패했습니다.",
+              "en": "Failed to log in to Kitsu.",
+              "ja": "Kitsu へのログインに失敗しました。"
+            },
+            "error_messages": {
+              "invalid_request": "Enter your Kitsu email (or slug) and password before logging in.",
+              "unauthorized": "Your Kitsu email, slug, or password is incorrect.",
+              "timeout": "Kitsu did not respond in time. Try again in a moment.",
+              "rate_limited": "Kitsu temporarily limited login attempts. Please wait and try again.",
+              "provider_error": "Kitsu could not issue a token right now. Try again later."
+            },
+            "error_messages_i18n": {
+              "invalid_request": {
+                "ko": "로그인 전에 Kitsu 이메일(또는 슬러그)과 비밀번호를 입력해 주세요.",
+                "en": "Enter your Kitsu email (or slug) and password before logging in.",
+                "ja": "ログイン前に Kitsu のメールアドレス（またはスラッグ）とパスワードを入力してください。"
+              },
+              "unauthorized": {
+                "ko": "Kitsu 이메일, 슬러그 또는 비밀번호가 올바르지 않습니다.",
+                "en": "Your Kitsu email, slug, or password is incorrect.",
+                "ja": "Kitsu のメールアドレス、スラッグ、またはパスワードが正しくありません。"
+              },
+              "timeout": {
+                "ko": "Kitsu 응답 시간이 초과되었습니다. 잠시 후 다시 시도해 주세요.",
+                "en": "Kitsu did not respond in time. Try again in a moment.",
+                "ja": "Kitsu の応答がタイムアウトしました。しばらくしてから再試行してください。"
+              },
+              "rate_limited": {
+                "ko": "Kitsu가 로그인 요청을 일시적으로 제한했습니다. 잠시 후 다시 시도해 주세요.",
+                "en": "Kitsu temporarily limited login attempts. Please wait and try again.",
+                "ja": "Kitsu がログイン試行を一時的に制限しました。しばらくしてから再試行してください。"
+              },
+              "provider_error": {
+                "ko": "지금은 Kitsu에서 토큰을 발급할 수 없습니다. 잠시 후 다시 시도해 주세요.",
+                "en": "Kitsu could not issue a token right now. Try again later.",
+                "ja": "現在 Kitsu でトークンを発行できません。しばらくしてから再試行してください。"
+              }
+            },
+            "delete_message": "저장된 Kitsu 토큰을 삭제했습니다.",
+            "delete_message_i18n": {
+              "ko": "저장된 Kitsu 토큰을 삭제했습니다.",
+              "en": "Stored Kitsu tokens removed.",
+              "ja": "保存済み Kitsu トークンを削除しました。"
+            },
+            "delete_reactivate_message": "저장된 Kitsu 토큰을 삭제했습니다. 플러그인을 다시 활성화하면 기본 검색으로 동작합니다.",
+            "delete_reactivate_message_i18n": {
+              "ko": "저장된 Kitsu 토큰을 삭제했습니다. 플러그인을 다시 활성화하면 기본 검색으로 동작합니다.",
+              "en": "Stored Kitsu tokens removed. Activate the plugin again to use the default search.",
+              "ja": "保存済み Kitsu トークンを削除しました。再度有効化すると基本検索で動作します。"
+            },
+            "delete_error_message": "저장된 Kitsu 토큰을 삭제하지 못했습니다.",
+            "delete_error_message_i18n": {
+              "ko": "저장된 Kitsu 토큰을 삭제하지 못했습니다.",
+              "en": "Failed to remove the stored Kitsu tokens.",
+              "ja": "保存済み Kitsu トークンの削除に失敗しました。"
+            },
+            "endpoint": "https://kitsu.io/api/oauth/token",
+            "params": {
+              "grant_type": "password",
+              "client_id": "dd031b32d2f56c990b1425efe6c42ad847e7fe3ab46bf1299f05ecd856bdb7dd",
+              "client_secret": "54d7307928f63414defd96399fc31ba847961ceaecef3a5fd93144e960c0e151"
+            },
+            "fields": [
+              {
+                "key": "username",
+                "type": "string",
+                "label": "Email or slug",
+                "label_i18n": {
+                  "ko": "이메일 또는 슬러그",
+                  "en": "Email or slug",
+                  "ja": "メールアドレスまたはスラッグ"
+                },
+                "required": true,
+                "placeholder": "Kitsu email or username",
+                "placeholder_i18n": {
+                  "ko": "kitsu 이메일 또는 사용자명",
+                  "en": "Kitsu email or username",
+                  "ja": "Kitsu のメールアドレスまたはユーザー名"
+                },
+                "auto_complete": "username"
+              },
+              {
+                "key": "password",
+                "type": "secret",
+                "label": "Password",
+                "label_i18n": {
+                  "ko": "비밀번호",
+                  "en": "Password",
+                  "ja": "パスワード"
+                },
+                "required": true,
+                "placeholder": "Kitsu password",
+                "placeholder_i18n": {
+                  "ko": "Kitsu 비밀번호",
+                  "en": "Kitsu password",
+                  "ja": "Kitsu のパスワード"
+                },
+                "auto_complete": "current-password"
+              }
+            ],
+            "store_mappings": {
+              "access_token": "access_token",
+              "refresh_token": "refresh_token"
+            }
+          }
+        ]
+      },
       "artifacts": [
         {
           "platform": "linux/docker",
-          "url": "https://github.com/kumiho-plugin/kumiho-plugin-metadata-googlebooks/releases/download/v0.1.3/kumiho-plugin-metadata-googlebooks_v0.1.3_linux_amd64",
-          "checksum": "sha256:129de5fd907409633dd3fcd34290756bc984b96e9b870025fc20821db069a8a5"
+          "url": "file:///home/aha-hyeong/workspace/project/kumiho/kumiho-plugin/kumiho-plugin-metadata-kitsu/dist/kumiho-plugin-metadata-kitsu_v0.1.2_linux_amd64",
+          "checksum": "sha256:edc13ec2c3e4a21a4e5f6034aae2013e38954684185452379908345df3e03da7"
         }
       ]
     }
