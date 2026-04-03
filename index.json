@@ -17,7 +17,7 @@
         {
           "platform": "linux/docker",
           "url": "https://github.com/kumiho-plugin/kumiho-plugin-metadata-kitsu/releases/download/v0.1.0/kumiho-plugin-metadata-kitsu_v0.1.0_linux_amd64",
-          "checksum": "sha256:6a7b2af5965fb73b564407a4131e2f275dcbc4316da793bc2c0d00ba8c57e9c2"
+          "checksum": "sha256:8fee27b4f9d39715ebbdd1bd659cdb11075848a0b7fe547f1eddcde5e7919fa4"
         }
       ]
     }
