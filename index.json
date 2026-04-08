@@ -46,13 +46,13 @@
           "platform": "linux/docker",
           "arch": "amd64",
           "url": "https://github.com/kumiho-plugin/kumiho-plugin-translate-deepl/releases/download/v0.1.0/kumiho-plugin-translate-deepl_v0.1.0_linux_amd64",
-          "checksum": "sha256:fcef90a0d9f4dfa30f311ef159ae45b1416fecaeabd196e5366bc8178ae1fc03"
+          "checksum": "sha256:86e776b2d49352890f48e0c1f92a21608003884a4e1e1b66a693a89b7037a47a"
         },
         {
           "platform": "linux/docker",
           "arch": "arm64",
           "url": "https://github.com/kumiho-plugin/kumiho-plugin-translate-deepl/releases/download/v0.1.0/kumiho-plugin-translate-deepl_v0.1.0_linux_arm64",
-          "checksum": "sha256:fcaabe9c00a170734498f83944f32e4a60f1c18d36d4709cec7cfa0d5fcc2d31"
+          "checksum": "sha256:fc5d040339d4eb71e721dbd561d539bafe73e010d46b4fd4df2f8e0e7267e6e8"
         }
       ]
     }
