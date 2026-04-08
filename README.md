@@ -10,6 +10,7 @@ Official plugin index for Kumiho.
 ## Current entries
 
 - `kumiho-plugin-metadata-kitsu`
+- `kumiho-plugin-translate-deepl`
 
 ## Notes
 

@@ -16,8 +16,43 @@
       "artifacts": [
         {
           "platform": "linux/docker",
+          "arch": "amd64",
           "url": "https://github.com/kumiho-plugin/kumiho-plugin-metadata-kitsu/releases/download/v0.1.0/kumiho-plugin-metadata-kitsu_v0.1.0_linux_amd64",
           "checksum": "sha256:8fee27b4f9d39715ebbdd1bd659cdb11075848a0b7fe547f1eddcde5e7919fa4"
+        },
+        {
+          "platform": "linux/docker",
+          "arch": "arm64",
+          "url": "https://github.com/kumiho-plugin/kumiho-plugin-metadata-kitsu/releases/download/v0.1.0/kumiho-plugin-metadata-kitsu_v0.1.0_linux_arm64",
+          "checksum": "sha256:212b4e3a2487fc3e2be45215b205baf217491049daa277beaf7c2e3b36d2941c"
+        }
+      ]
+    },
+    {
+      "id": "kumiho-plugin-translate-deepl",
+      "name": "DeepL Translator",
+      "version": "0.1.0",
+      "trust_level": "official",
+      "supported_platforms": [
+        "linux/docker"
+      ],
+      "capabilities": [
+        "translation.detect",
+        "translation.translate"
+      ],
+      "manifest_url": "https://github.com/kumiho-plugin/kumiho-plugin-translate-deepl/releases/download/v0.1.0/manifest.json",
+      "artifacts": [
+        {
+          "platform": "linux/docker",
+          "arch": "amd64",
+          "url": "https://github.com/kumiho-plugin/kumiho-plugin-translate-deepl/releases/download/v0.1.0/kumiho-plugin-translate-deepl_v0.1.0_linux_amd64",
+          "checksum": "sha256:fcef90a0d9f4dfa30f311ef159ae45b1416fecaeabd196e5366bc8178ae1fc03"
+        },
+        {
+          "platform": "linux/docker",
+          "arch": "arm64",
+          "url": "https://github.com/kumiho-plugin/kumiho-plugin-translate-deepl/releases/download/v0.1.0/kumiho-plugin-translate-deepl_v0.1.0_linux_arm64",
+          "checksum": "sha256:fcaabe9c00a170734498f83944f32e4a60f1c18d36d4709cec7cfa0d5fcc2d31"
         }
       ]
     }
